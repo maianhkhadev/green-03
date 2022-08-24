@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './style.css'
-import { getJobs, createJob, editJob } from '../../apis/jobs'
+import { getJobs, createJob, editJob,deleteJob } from '../../apis/jobs'
+import List from '../List'
 
 const DEFAULT_FORM_DATA = { title: '', type: '', descriptor: '' }
 
@@ -37,6 +38,7 @@ const Jobs = () => {
   }
 
   const onCreate = () => {
+
     
   }
 
@@ -48,6 +50,10 @@ const Jobs = () => {
     <div>
       <header className='header row'>
         <h4 className='col-7'>Tasks</h4>
+        <div className='container'>
+        <List list={list}/>
+
+        </div>
       </header>
     </div>
   )
