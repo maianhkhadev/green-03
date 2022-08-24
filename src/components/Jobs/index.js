@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './style.css'
-import { getJobs, createJob, editJob } from '../../apis/jobs'
+import { getJobs, createJob, editJob, deleteJob } from '../../apis/jobs'
 
 const DEFAULT_FORM_DATA = { title: '', type: '', descriptor: '' }
 
@@ -37,11 +37,36 @@ const Jobs = () => {
   }
 
   const onCreate = () => {
+    if(!formData.id) {
+      createJob(formData).then((res) => {
+      fetchData()
+      setFormData(DEFAULT_FORM_DATA)
+    })
+    .catch((error => {console.log(error)}))
+    }
+
+    if(formData.id) {
+      editJob(formData.id, formData).then((res) => {
+        setFormData(DEFAULT_FORM_DATA)
+      })
+      .catch((error => {console.log(error)}))
+    }
     
   }
 
   const onEdit = data => {
+    setFormData(data)
 
+  }
+
+  const onDelete = e => {
+    deleteJob(id).then((res) => {
+      fetchData()
+    })
+    const newList = list.filter((a) => {
+      return a.id !== e.id
+    });
+    setList(newList)
   }
 
   return (
