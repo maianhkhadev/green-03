@@ -33,18 +33,37 @@ const Jobs = () => {
   }
 
   const onSubmit = () => {
-
+    //create
+    if(!formData.id) {
+      createJob(formData).then(response => {
+        fetchData()
+        setFormData(DEFAULT_FORM_DATA)
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+    //edit
+    if (formData.id) {
+      editJob(formData.id, formData)
+      .then((response) => {
+          fetchData()
+          setFormData(DEFAULT_FORM_DATA)
+      })
+      .catch((error) => {
+          console.log(error)
+      })
+    }
   }
 
   const onCreate = () => {
-    setFormData()
+    setFormData(DEFAULT_FORM_DATA)
     const element = document.querySelector('#modal-form-user')
     const modal = window.bootstrap.Modal.getOrCreateInstance(element)
     modal.show()
   }
 
   const onEdit = data => {
-    setFormData(data)
+    setFormData(DEFAULT_FORM_DATA)
     const element = document.querySelector('#modal-form-user')
     const modal = window.bootstrap.Modal.getOrCreateInstance(element)
     modal.show()
