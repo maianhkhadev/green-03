@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './style.css'
 import { getJobs, createJob, editJob } from '../../apis/jobs'
 
-const DEFAULT_FORM_DATA = { title: '', type: '', descriptor }
+const DEFAULT_FORM_DATA = { title: '', type: '', descriptor:''}
 
 const Jobs = () => {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA)
@@ -36,7 +36,7 @@ const Jobs = () => {
     if(formData.id){
       createJob(formData).then(res => {
         setList(res.data)
-       setFormData[DEFAULT_FORM_DATA]
+       setFormData(DEFAULT_FORM_DATA)
       })
       .catch(error => {
         console.log(error)
@@ -45,7 +45,7 @@ const Jobs = () => {
     if(formData.id){
       editJob(formData).then(res => {
         setList(res.data)
-       setFormData[DEFAULT_FORM_DATA]
+       setFormData(DEFAULT_FORM_DATA)
       })
       .catch(error => {
         console.log(error)
@@ -64,22 +64,19 @@ const Jobs = () => {
 
   return (
     <div>
+      
       {list.map((item) => {
         return (
-          <div key={item.id}>
-            <div>{item.title}</div>
-            <div>{item.type}</div>
-            <div>{item.descriptor}</div>
-            <button>Edit</button>
+          <div key={item.id} id='list'>
+            <div>title:{item.title}</div>
+            <div>type:{item.type}</div>
+            <div>descriptor:{item.descriptor}</div>
+            <button onClick={() => { onEdit(item)}} >Edit</button>
           </div>
         )
-      })
-
-
+      })    
       }
-
-     
-    </div>
+ </div>
   )
 }
 
