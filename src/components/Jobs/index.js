@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './style.css'
-import { getJobs, createJob, editJob } from '../../apis/jobs'
+import { getJobs, createJob, editJob, deleteJob } from '../../apis/jobs'
+import Form from '../Form'
 
 const DEFAULT_FORM_DATA = { title: '', type: '', descriptor: '' }
 
@@ -32,8 +33,9 @@ const Jobs = () => {
     })
   }
 
+  
   const onSubmit = () => {
-
+    
   }
 
   const onCreate = () => {
@@ -41,7 +43,14 @@ const Jobs = () => {
   }
 
   const onEdit = data => {
-
+    setFormData(data)
+  }
+  const onDelete = id => {
+    deleteJob(id).then(res => {
+      fetchData()
+    }).catch(error => {
+      console.log(error)
+    })
   }
 // demo
 
@@ -50,6 +59,8 @@ const Jobs = () => {
       <header className='header row'>
         <h4 className='col-7'>Tasks</h4>
       </header>
+      <Form form={formData} submit={onSubmit} />
+      <List list={list} Edit={editJob} Delete={deleteJob}/>
     </div>
   )
 }
