@@ -1,0 +1,22 @@
+.user {
+
+    padding: 20px;
+    margin: 8px;
+    border:1px solid rgb(67, 65, 65);
+    border-radius: 8px;
+    background-color:grey;
+    color: lightcyan;
+    font-size: 20px;
+    text-align: center;
+}
+.user button {
+    width: 100px;
+    margin: 10px;
+    padding: 5px;
+    border:1px solid grey;
+    border-radius: 15px;
+}
+.user button:hover {
+    background-color: lightcyan;
+    color:rgb(4, 74, 74);
+}

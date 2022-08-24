@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import './style.css'
-
 import { getJobs, createJob, editJob, deleteJob } from '../../apis/jobs'
 
 
@@ -32,8 +31,6 @@ const validate = (list, data) => {
           return newItem ? false : true
       }
 }
-
-
 
 const Jobs = () => {
   const [formData, setFormData] = useState(DEFAULT_FORM_Data)
@@ -124,9 +121,25 @@ const Jobs = () => {
 
   return (
     <div>
+      {/* Start header */}
       <header className='header row'>
         <h4 className='col-7'>Tasks</h4>
+        <button type='button' data-bs-toggle='modal' data-bs-formTarget='#formModal' className='btn btn-info col-5'>Create User</button>
       </header>
+      {/* Start main */}
+      <main>
+        <div>
+          <Form
+            onSubmit={onSubmit}
+            onChange={onChange}
+            formData={formData}
+            list={list}
+          />
+        </div>
+        <div>
+          <List list={list} setList={setList} onEdit={onEdit} onDelete={onDelete}/>
+        </div>
+      </main>
     </div>
   )
 }
