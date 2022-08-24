@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./style.css";
 import { getJobs, createJob, editJob } from "../../apis/jobs";
+import List from "./List";
 
 const DEFAULT_FORM_DATA = { title: "", type: "", descriptor: "" };
 
@@ -16,6 +17,7 @@ const Jobs = () => {
     getJobs()
       .then((response) => {
         setList(response.data);
+        console.log(list)
       })
       .catch((error) => {
         console.log(error);
@@ -43,6 +45,7 @@ const Jobs = () => {
       <header className="header row">
         <h4 className="col-7">Tasks</h4>
       </header>
+      <List list={list}></List>
     </div>
   );
 };
