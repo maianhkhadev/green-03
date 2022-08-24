@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
 import './style.css'
 import { getJobs, createJob, editJob, deleteJob } from '../../apis/jobs'
-
+import Form from '../Form'
+import List from '../list'
+//ABCD
 const DEFAULT_FORM_DATA = { title: '', type: '', descriptor: '' }
 
 const Jobs = () => {
@@ -32,53 +34,37 @@ const Jobs = () => {
     })
   }
 
+  
   const onSubmit = () => {
-    //create
-    if(!formData.id) {
-      createJob(formData).then(response => {
-        fetchData()
-        setFormData(DEFAULT_FORM_DATA)
-      }).catch(error => {
-        console.log(error)
-      })
-    }
-    //edit
-    if (formData.id) {
-      editJob(formData.id, formData)
-      .then((response) => {
-          fetchData()
-          setFormData(DEFAULT_FORM_DATA)
-      })
-      .catch((error) => {
-          console.log(error)
-      })
-    }
+    
   }
 //
   const onCreate = () => {
-    setFormData(DEFAULT_FORM_DATA)
-    const element = document.querySelector('#modal-form-user')
-    const modal = window.bootstrap.Modal.getOrCreateInstance(element)
-    modal.show()
+    
   }
 
   const onEdit = data => {
-    setFormData(DEFAULT_FORM_DATA)
+    setFormData(data)
     const element = document.querySelector('#modal-form-user')
     const modal = window.bootstrap.Modal.getOrCreateInstance(element)
     modal.show()
   }
-   
-
-  const onDelete = data => {
-
+  const onDelete = id => {
+    deleteJob(id).then(res => {
+      fetchData()
+    }).catch(error => {
+      console.log(error)
+    })
   }
+// demo
 
   return (
     <div>
       <header className='header row'>
         <h4 className='col-7'>Tasks</h4>
       </header>
+      <Form form={formData} submit={onSubmit} />
+      <List list={list} Edit={editJob} Delete={deleteJob}/>
     </div>
   )
 }
