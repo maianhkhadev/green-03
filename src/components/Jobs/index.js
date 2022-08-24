@@ -54,7 +54,7 @@ const Jobs = () => {
       })
     }
   }
-
+//
   const onCreate = () => {
     setFormData(DEFAULT_FORM_DATA)
     const element = document.querySelector('#modal-form-user')
