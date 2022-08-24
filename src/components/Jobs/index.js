@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './style.css'
 import { getJobs, createJob, editJob } from '../../apis/jobs'
 
-const DEFAULT_FORM_DATA = { title: '', type: '', descriptor }
+const DEFAULT_FORM_DATA = { title: '', type: '', descriptor: '' }
 
 const Jobs = () => {
   const [formData, setFormData] = useState(DEFAULT_FORM_DATA)
@@ -43,6 +43,7 @@ const Jobs = () => {
   const onEdit = data => {
 
   }
+// demo
 
   return (
     <div>
