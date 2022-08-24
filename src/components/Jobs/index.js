@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import './style.css'
 import { getJobs, createJob, editJob, deleteJob } from '../../apis/jobs'
 import Form from '../Form'
+import List from '../list'
 
 const DEFAULT_FORM_DATA = { title: '', type: '', descriptor: '' }
 
