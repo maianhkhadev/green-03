@@ -58,12 +58,12 @@ const Jobs = () => {
     }
   };
 
-  const onEdit = (data) => {
-    setFormData(data);
+  const onEdit = (item) => {
+    setFormData(item);
   };
 
   const onDelete = (e) => {
-    deleteJob(id).then((res) => {
+    deleteJob(e).then((res) => {
       fetchData();
     });
     const newList = list.filter((a) => {
@@ -77,7 +77,7 @@ const Jobs = () => {
       <header className="header row">
         <h4 className="col-7">Tasks</h4>
         <div className="container">
-          <List list={list} />
+          <List list={list} onDelete={onDelete} onEdit={onEdit} />
         </div>
       </header>
     </div>
