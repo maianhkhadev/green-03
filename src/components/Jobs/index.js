@@ -64,15 +64,17 @@ const Jobs = () => {
 
   return (
     <div>
-      
+
       {list.map((item) => {
         return (
-          <div key={item.id} id='list'>
+          <div>
+          <div key={item.id} className='list'>
             <div>title:{item.title}</div>
             <div>type:{item.type}</div>
             <div>descriptor:{item.descriptor}</div>
             <button onClick={() => { onEdit(item)}} >Edit</button>
           </div>
+        </div>
         )
       })    
       }

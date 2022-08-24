@@ -10,3 +10,9 @@
 .header button {
   width: 100%;
 }
+.list{
+  float: left;
+  margin:3rem;
+  margin: 1rem;
+  border: 2px solid ;
+}
