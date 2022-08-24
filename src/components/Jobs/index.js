@@ -45,6 +45,9 @@ const Jobs = () => {
 
   const onEdit = data => {
     setFormData(data)
+    const element = document.querySelector('#modal-form-user')
+    const modal = window.bootstrap.Modal.getOrCreateInstance(element)
+    modal.show()
   }
   const onDelete = id => {
     deleteJob(id).then(res => {
